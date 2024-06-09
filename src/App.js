@@ -4,8 +4,7 @@ import WeatherCard from './component/WeatherCard';
 import './index.css';
 import Footer from './component/Footer';
 import SimmerUI from './component/SimmerUI';
-
-const apiKey = '94661b376ae74781a52135140240806'; 
+import { apiKey } from './util/constant';
 
 function App() {
   const [location, setLocation] = useState('');
@@ -34,14 +33,15 @@ function App() {
         <button class="dark-mode-btn" onClick={toggleTheme}>{darkMode?"Dark Mode": "Light Mode"}</button>
       </header>
     <div className={darkMode ? 'App dark-mode' : 'App'}>
-      <div className="search">
+      <div class={darkMode? 'search-container-in-darkMode':"search-container-in-light-mode"}>
         <input
+        className='search-input'
           type="text"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          placeholder="Enter city or zip code"
+          placeholder="Enter City Name"
         />
-        <button class="search" onClick={fetchWeather}>Search</button>
+        <button class="search-btn" onClick={fetchWeather}>Search</button>
       </div>
       <div className="weather-container">
         {  weatherData.length>0?<WeatherCard data={weatherData} />:(<SimmerUI/>)}
