@@ -3,18 +3,22 @@ import React from 'react';
 import '../index.css'
 
 function WeatherCard({ data }) {
-  //const { name, main: { temp, humidity }, weather, wind: { speed } } = data;
+  const { name,country,region,tz_id,localtime} = data[0].location;
+  const {temp_c,temp_f,humidity,wind_kph,condition,heatindex_c,heatindex_f}=data[0].current;
    console.log(data)
-
+   
   return (
     <div className="weather-card">
-    
-    <h3  >{data[0].location.name}</h3>
-    <p style={{ marginTop: '5px' }}>{data[0].location.localtime}</p>
-    <p style={{ marginTop: '5px' }}>Temperature: {data[0].current.temp_c}°C</p>
-    <p style={{ marginTop: '5px' }}>Humidity: {data[0].current.humidity}%</p>
-    <p style={{ marginTop: '5px' }}>Wind Speed: {data[0].current.wind_kph} kph</p>
-    <p style={{ marginTop: '5px' }}>Description: {data[0].current.wind_kph}</p>
+    <h3>{name} ({country}, {region})</h3>
+    <h3 style={{ marginTop: '5px' }}>{tz_id}</h3>
+    <p style={{ marginTop: '10px' }}>{localtime}</p>
+    <p style={{ marginTop: '10px' }}>Temperature: {temp_c}°C</p>
+    <p style={{ marginTop: '10px' }}>Temperature: {temp_f}°F</p>
+    <p style={{ marginTop: '10px' }}>Humidity: {humidity}%</p>
+    <p style={{ marginTop: '10px' }}>Wind Speed: {wind_kph} kph</p>
+    <p style={{ marginTop: '10px' }}>Condition: {condition.text}</p>
+    <p style={{ marginTop: '10px' }}>HeatIndex: {heatindex_c}°C</p>
+    <p style={{ marginTop: '10px' }}>HeatIndex: {heatindex_f}°F</p>
     </div>
   );
 }
