@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import WeatherCard from './component/WeatherCard';
 import './index.css';
@@ -7,7 +7,7 @@ import SimmerUI from './component/SimmerUI';
 import { apiKey } from './util/constant';
 
 function App() {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState('Patna');
   const [weatherData, setWeatherData] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -19,6 +19,10 @@ function App() {
       alert('City not found. Please try again.');
     }
   };
+
+   useEffect(()=>{
+    fetchWeather();
+   },[])
 
   console.log(weatherData)
 
@@ -44,7 +48,7 @@ function App() {
         <button class="search-btn" onClick={fetchWeather}>Search</button>
       </div>
       <div className="weather-container">
-        {  weatherData.length>0?<WeatherCard data={weatherData} />:(<SimmerUI/>)}
+        {  weatherData.length>0?<WeatherCard data={weatherData} mode={darkMode} />:(<SimmerUI/>)}
       </div>
     </div>
     <Footer/>
