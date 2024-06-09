@@ -184,9 +184,8 @@
 
 @media (max-width: 1200px) {
   /* Your CSS rules for tablets and mobile devices */
-  .main-container{
-    background-color: red;
-  }
+ 
+  
   .weather-container {
     height: 70%;
   }
